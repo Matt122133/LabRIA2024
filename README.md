@@ -1,12 +1,12 @@
 # LabRIA2024  -  E-Commerce Web App
 
 ## Descripción
-Este proyecto es una página web de comercio electrónico que permite a los usuarios explorar, comprar y gestionar productos. La aplicación incluye funciones de inicio de sesión, páginas de listado y detalles de productos, así como un carrito de compras. Utiliza la API pública [Fake Store API](https://fakestoreapi.com/docs)" para obtener datos de productos.
+Este proyecto es una página web de comercio electrónico que permite a los usuarios explorar, comprar y gestionar productos. La aplicación incluye funciones de inicio de sesión, páginas de listado y detalles de productos, así como un carrito de compras. Utiliza la API pública [Fake Store API](https://fakestoreapi.com/docs) para obtener datos de productos.
 
 ## Integrantes del Proyecto
-- Miquel
-- Mateo
-- Angelo
+- Miquel Servián
+- Mateo Tambasco
+- Angelo Giroldi
 
 ## Funcionalidades
 1. **Inicio de sesión:** Los usuarios pueden iniciar sesión para acceder a su cuenta y realizar compras.
