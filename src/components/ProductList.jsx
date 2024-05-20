@@ -7,16 +7,12 @@ export const ProductList = () => {
 
   return (
     <>
-      {
-        isLoading ?? <p>Loading...</p>
-      }
-      <div className='card-grid'>
-        {
-          products.map((product) => (
-            <Product key={product.id} {...product} />
-          ))
-        }
+      {isLoading ?? <p>Loading...</p>}
+      <div className="card-grid">
+        {products.map((product) => (
+          <Product key={product.id} {...product} />
+        ))}
       </div>
     </>
-  )
+  );
 };

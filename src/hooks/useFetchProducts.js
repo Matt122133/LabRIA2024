@@ -7,10 +7,11 @@ export const useFetchProducts = () => {
   const [ isLoading, setIsLoading ] = useState( true );
 
   const getProducts = async () => {
-    const products = await getProductsApi();
-    setProducts( products );
+    const productsApi = await getProductsApi();
+    setProducts(productsApi);
     setIsLoading( false );
   }
+
   useEffect( () => {
     getProducts();
   }, []);
@@ -19,4 +20,5 @@ export const useFetchProducts = () => {
       products,
       isLoading
     };
+
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { ProductList } from './components/ProductList.jsx'
+import { EcommerceApp } from "./EcommerceApp.jsx";
 
-ReactDOM.createRoot(document.getElementById('body')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ProductList />
-  </React.StrictMode>,
-)
+    <EcommerceApp />
+  </React.StrictMode>
+);

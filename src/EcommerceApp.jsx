@@ -1,8 +1,17 @@
+import { ProductList } from "./components/ProductList";
 
 export const EcommerceApp = () => {
-  return(
+  return (
     <>
-      <div>EcommerceApp</div>
+      {/* <div className="header">
+        <Header />
+      </div> */}
+      <div className="Product">
+        <ProductList />
+      </div>
+      {/* <div className="filter">
+        <Filter />
+      </div> */}
     </>
   );
 };

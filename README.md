@@ -1,5 +1,15 @@
 # LabRIA2024  -  E-Commerce Web App
 
+## Instalación
+Es necesario tener **Node** version 18 o superior.<br>
+**Yarn** instalado<br><br>
+<u>Comandos para iniciar:</u>
+- **yarn install**
+- **yarn dev**
+
+*Colocar URL en el navegador o hacer ctrl + click en la URL que se muestra en la terminal*
+
+
 ## Descripción
 Este proyecto es una página web de comercio electrónico que permite a los usuarios explorar, comprar y gestionar productos. La aplicación incluye funciones de inicio de sesión, páginas de listado y detalles de productos, así como un carrito de compras. Utiliza la API pública [Fake Store API](https://fakestoreapi.com/docs) para obtener datos de productos.
 
