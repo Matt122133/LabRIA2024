@@ -15,7 +15,7 @@ Este proyecto es una página web de comercio electrónico que permite a los usua
 4. **Carrito de compras:** Los usuarios pueden agregar productos al carrito y completar la compra.
 
 ## Tecnologías Utilizadas
-- 
+- REACT + VITE
 - Consumo de API REST
 
 ## Mock pensado del diseño de la pagina
