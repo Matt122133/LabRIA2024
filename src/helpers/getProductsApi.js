@@ -1,5 +1,5 @@
 export const getProductsApi = async () => {
-  const response = await fetch('https://fakestoreapi.com/products');
-  const data = await response.json();
-  return data;
+  const data = await fetch('https://fakestoreapi.com/products');
+  const products = await data.json();
+  return products;
 };
