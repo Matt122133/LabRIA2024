@@ -1,17 +1,9 @@
-import { ProductList } from "./components/ProductList";
+import { AppRouter } from "./Router/AppRouter";
 
 export const EcommerceApp = () => {
   return (
     <>
-      {/* <div className="header">
-        <Header />
-      </div> */}
-      <div className="Product">
-        <ProductList />
-      </div>
-      {/* <div className="filter">
-        <Filter />
-      </div> */}
+      <AppRouter />
     </>
   );
 };
