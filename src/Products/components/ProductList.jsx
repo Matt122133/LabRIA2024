@@ -5,12 +5,10 @@ export const ProductList = () => {
   const { products, isLoading } = useFetchProducts();
 
   return (
-    <>
-      <div className="card-grid">
-        {products.map((product) => (
-          <Product key={product.id} {...product} />
-        ))}
-      </div>
-    </>
+    <main className="card-grid">
+      {products.map((product) => (
+        <Product key={product.id} {...product} />
+      ))}
+    </main>
   );
 };
