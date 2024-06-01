@@ -1,12 +1,15 @@
 import { BrowserRouter } from "react-router-dom";
-import Navbar from "./Navbar/Navbar";
+import { CartProvider } from "./Cart/context/CartContext";
+import { NavBar } from "./Navbar/NavBar";
 import { AppRouter } from "./Router/AppRouter";
 
 export const EcommerceApp = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <AppRouter />
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <NavBar />
+        <AppRouter />
+      </BrowserRouter>
+    </CartProvider>
   );
 };
