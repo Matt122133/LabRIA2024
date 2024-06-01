@@ -7,17 +7,18 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+export const LoginForm = () => {
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get("email"),
+      password: data.get("password"),
     });
   };
 
@@ -26,20 +27,12 @@ const LoginForm = () => {
       sx={{
         my: 8,
         mx: 4,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
-      <Box
-        sx={{
-          width: 56,
-          height: 56,
-          backgroundColor: '#1565C0',
-          borderRadius: '50%',
-          mb: 1,
-        }}
-      />
+      <AccountCircleIcon />
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
@@ -83,7 +76,11 @@ const LoginForm = () => {
             </Link>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2" onClick={() => navigate('/register')}>
+            <Link
+              href="#"
+              variant="body2"
+              onClick={() => navigate("/register")}
+            >
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>
@@ -91,6 +88,4 @@ const LoginForm = () => {
       </Box>
     </Box>
   );
-}
-
-export default LoginForm;
+};

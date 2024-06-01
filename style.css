@@ -15,9 +15,8 @@ input {
   width: 100%;
 }
 
-a.card {
+a{
   text-decoration: none;
-  background-color: yellow;
 }
 
 h2 {

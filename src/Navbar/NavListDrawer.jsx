@@ -1,58 +1,47 @@
-import {Box} from '@mui/system';
-import {List, ListItem, ListItemButton, ListItemIcon,ListItemText} from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import DraftIcon from '@mui/icons-material/Home';
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Link } from "react-router-dom";
 
-
-import React from 'react';
-
-export default function NavListDrawer(){
-    return(
-        
-        
-        <Box sx={{widht:250}}>
-           <nav> 
-            <List>
-
-                <ListItem>
-                    <ListItemIcon>
-                        <HomeIcon />    
-                    </ListItemIcon>
-                    <ListItemText primary="Home"/>
-                </ListItem>
-                <ListItem>
-                    <ListItemIcon>
-                        <DraftIcon />    
-                    </ListItemIcon>
-                    <ListItemText primary="Carro"/>
-                </ListItem>
-            </List>
-            </nav>
-    
-            <nav>
-            <List>
-                <ListItem disablePadding>
-                    <ListItemButton 
-                        component="a"
-                        href="#conhref">
-                        <ListItemText primary="Mis Compras"/>
-                    </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                    <ListItemButton
-                        component="a"
-                        href="#conhref"
-                    >
-                        <ListItemText primary="Con href"/>
-                    </ListItemButton>
-                </ListItem>
-
-            </List>
-            </nav>
-        </Box>
-        
-
-        )
-
-
-}
+export const NavListDrawer = ({ onClose }) => {
+  return (
+    <Box sx={{ width: 250 }}>
+      <nav>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton component={Link} to="/login" onClick={onClose}>
+              <ListItemIcon>
+                <LoginIcon />
+              </ListItemIcon>
+              <ListItemText primary="Iniciar sesión" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Cerrar sesión" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <AccountCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Modificar perfil" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </nav>
+    </Box>
+  );
+};
