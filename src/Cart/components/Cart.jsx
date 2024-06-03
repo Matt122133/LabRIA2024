@@ -1,8 +1,23 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 import { CartContext } from "../context/CartContext";
 
 export const Cart = () => {
   const { cart, removeFromCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  if (cart.length === 0) {
+    return (
+      <div>
+        <p>No tienes productos en el carrito.</p>
+        <Button onClick={() => navigate("/")}>Ir a buscar productos</Button>
+      </div>
+    );
+  }
+  const total = cart
+    .reduce((sum, product) => sum + product.price * product.quantity, 0)
+    .toFixed(2);
 
   return (
     <div>
@@ -15,6 +30,7 @@ export const Cart = () => {
           <button onClick={() => removeFromCart(product.id)}>Eliminar</button>
         </div>
       ))}
+      <p>Total: ${total}</p>
     </div>
   );
 };

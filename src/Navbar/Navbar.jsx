@@ -13,11 +13,10 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavListDrawer } from "./NavListDrawer"; // Asegúrate de importar NavListDrawer
+import { NavListDrawer } from "./NavListDrawer";
 
-export const NavBar = () => {
-  const [open, setOpen] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false); // Nuevo estado para controlar el Drawer
+export const Navbar = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
