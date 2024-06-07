@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { getProductsApi } from '../helpers/getProductsApi.js';
 
 export const useFetchProducts = () => {
-  const [products, setProducts] = useState([]);
+  const [productsApi, setProducts] = useState([]);
 
   const getProducts = async () => {
-    const productsApi = await getProductsApi();
-    setProducts(productsApi);
+    const productsFromApi = await getProductsApi();
+    setProducts(productsFromApi);
   }
 
   useEffect( () => {
@@ -14,7 +14,7 @@ export const useFetchProducts = () => {
   }, []);
 
   return {
-    products,
+    productsApi,
     };
 
 }
