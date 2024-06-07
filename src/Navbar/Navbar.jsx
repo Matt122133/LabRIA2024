@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -13,11 +13,12 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavListDrawer } from "./NavListDrawer"; // Asegúrate de importar NavListDrawer
+import { NavListDrawer } from "./NavListDrawer";
+import { ProductContext } from "../Products/context/ProductContext";
 
-export const NavBar = () => {
-  const [open, setOpen] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false); // Nuevo estado para controlar el Drawer
+export const Navbar = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const { searchTerm, setSearchTerm } = useContext(ProductContext);
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
@@ -32,7 +33,12 @@ export const NavBar = () => {
       <Toolbar>
         <Grid container alignItems="center">
           <Grid item xs={2}>
-            <Link to={"/"}>
+            <Link
+              onClick={() => {
+                setSearchTerm("");
+              }}
+              to={"/"}
+            >
               <Typography variant="h6">Logo</Typography>
             </Link>
           </Grid>
@@ -41,6 +47,13 @@ export const NavBar = () => {
               fullWidth
               variant="outlined"
               placeholder="Buscar productos..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                }
+              }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

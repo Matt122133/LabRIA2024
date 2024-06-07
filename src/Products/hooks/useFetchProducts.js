@@ -2,14 +2,11 @@ import { useEffect, useState } from 'react';
 import { getProductsApi } from '../helpers/getProductsApi.js';
 
 export const useFetchProducts = () => {
-
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [productsApi, setProducts] = useState([]);
 
   const getProducts = async () => {
-    const productsApi = await getProductsApi();
-    setProducts(productsApi);
-    setIsLoading(false);
+    const productsFromApi = await getProductsApi();
+    setProducts(productsFromApi);
   }
 
   useEffect( () => {
@@ -17,8 +14,7 @@ export const useFetchProducts = () => {
   }, []);
 
   return {
-      products,
-      isLoading
+    productsApi,
     };
 
 }

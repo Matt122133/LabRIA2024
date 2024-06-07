@@ -9,7 +9,7 @@ const Sidebar = ({ categories, onSelectCategory }) => {
       ? selectedCategories.filter((cat) => cat !== category.slug)
       : [...selectedCategories, category.slug];
     setSelectedCategories(updatedCategories);
-    onSelectCategory(updatedCategories); // Llamar a la función de selección en el padre
+    onSelectCategory(updatedCategories);
   };
 
   return (
@@ -33,22 +33,6 @@ const Sidebar = ({ categories, onSelectCategory }) => {
           ))}
         </FormGroup>
       </Paper>
-
-      <style jsx>{`
-        .sidebar {
-          width: 250px;
-          padding: 20px;
-          position: fixed;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          overflow-y: auto;
-        }
-
-        .sidebar-paper {
-          padding: 20px;
-        }
-      `}</style>
     </div>
   );
 };

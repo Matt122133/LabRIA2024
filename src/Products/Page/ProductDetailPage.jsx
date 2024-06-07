@@ -1,26 +1,44 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button, IconButton } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
 import { useFetchProductById } from "../hooks/useFetchProductById";
 import { CartContext } from "../../Cart/context/CartContext";
-import { Button } from "@mui/material";
 
 export const ProductDetailPage = () => {
+  const navigate = useNavigate();
   const { addToCart } = useContext(CartContext);
   const { id } = useParams();
   const { product } = useFetchProductById(id);
-  const { title, category, description, price, images, rating } = product;
+  const {
+    title,
+    sku,
+    category,
+    brand,
+    description,
+    price,
+    images,
+    raiting,
+    discountPercentage,
+    warrantyInformation,
+  } = product;
 
   return (
     <main>
+      <IconButton onClick={() => navigate(-1)}>
+        <ArrowBack />
+      </IconButton>
       <h1>{title}</h1>
-      <p>{category}</p>
+      <p>sku: {sku}</p>
+      <p>brand: {brand}</p>
+      <p>category: {category}</p>
       <img src={images} alt={title} />
       <h2>{price}</h2>
+      <h2>%{discountPercentage}</h2>
       <p>{description}</p>
-      <p>
-        {rating?.rate} {rating?.count}
-      </p>
-      <Button onClick={() => addToCart(product)}> Agregar al carrito</Button>
+      <p>{raiting}</p>
+      <p>{warrantyInformation}</p>
+      <Button onClick={() => addToCart(product)}>Agregar al carrito</Button>
     </main>
   );
 };

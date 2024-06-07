@@ -43,16 +43,20 @@ img {
   display: flex;
   width: 100%;
 }
-
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 250px;
-  height: 100vh; /* Ajusta la altura de la Sidebar según tus necesidades */
-  background-color: #f0f0f0;
-  z-index: 1; /* Asegura que la Sidebar esté debajo de la Navbar */
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
 }
+
+.sidebar-paper {
+  padding: 20px;
+}
+
 
 .card {
   align-content: center;

@@ -1,34 +1,50 @@
-import React, { useState } from 'react';
-import { Product } from './Product';
-import { useFetchProducts } from '../hooks/useFetchProducts';
-import { useFetchCategories } from '../hooks/useFetchCategories';
-import Sidebar from './Sidebar';
+import { useContext, useEffect, useState } from "react";
+import { Product } from "./Product";
+import { useFetchProducts } from "../hooks/useFetchProducts";
+import { useFetchCategories } from "../hooks/useFetchCategories";
+import Sidebar from "./Sidebar";
+import { ProductContext } from "../context/ProductContext";
 
 export const ProductList = () => {
-  const { products, isLoading } = useFetchProducts();
-  const { categories, isLoading: isLoadingCategories } = useFetchCategories();
+  const { productsApi } = useFetchProducts();
+  const { searchTerm } = useContext(ProductContext);
+  const { categories } = useFetchCategories();
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [listProduct, setListProduct] = useState(productsApi);
 
   const handleSelectCategory = (selected) => {
     setSelectedCategories(selected);
   };
 
-  // Filtrar productos basados en las categorías seleccionadas
-  const filteredProducts = selectedCategories.length > 0
-    ? products.filter(product => selectedCategories.includes(product.category))
-    : products;
+  useEffect(() => {
+    const filteredProducts = productsApi.filter((product) => {
+      const matchesCategory =
+        selectedCategories.length > 0
+          ? selectedCategories.includes(product.category)
+          : true;
+      const matchesSearchTerm = searchTerm
+        ? product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        : true;
+      return matchesCategory && matchesSearchTerm;
+    });
+
+    setListProduct(filteredProducts);
+  }, [searchTerm, productsApi, selectedCategories]);
 
   return (
-    <> 
+    <div className="card-categories">
       <div className="categories-list-container">
-        <Sidebar categories={categories} onSelectCategory={handleSelectCategory} />
+        <Sidebar
+          categories={categories}
+          onSelectCategory={handleSelectCategory}
+        />
       </div>
 
       <main className="card-grid">
-        {filteredProducts.map((product) => (
+        {listProduct.map((product) => (
           <Product key={product.id} {...product} />
         ))}
       </main>
-    </>
+    </div>
   );
 };
