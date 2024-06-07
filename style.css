@@ -39,6 +39,21 @@ img {
   justify-content: center;
 }
 
+.categories-list-container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh; /* Ajusta la altura de la Sidebar según tus necesidades */
+  background-color: #f0f0f0;
+  z-index: 1; /* Asegura que la Sidebar esté debajo de la Navbar */
+}
+
 .card {
   align-content: center;
   align-items: center;
