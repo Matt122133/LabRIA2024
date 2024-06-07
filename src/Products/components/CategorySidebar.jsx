@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
-import { Typography, FormGroup, FormControlLabel, Checkbox, Paper } from '@material-ui/core';
+import {
+  Box,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Typography,
+} from "@mui/material";
+import React, { useState } from "react";
 
-const Sidebar = ({ categories, onSelectCategory }) => {
+export const CategorySidebar = ({ categories, onSelectCategory }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   const handleCategoryChange = (category) => {
@@ -14,7 +20,7 @@ const Sidebar = ({ categories, onSelectCategory }) => {
 
   return (
     <div className="sidebar">
-      <Paper elevation={3} className="sidebar-paper">
+      <Box elevation={3} className="sidebar-paper">
         <Typography variant="h6" gutterBottom>
           Categorías
         </Typography>
@@ -32,9 +38,7 @@ const Sidebar = ({ categories, onSelectCategory }) => {
             />
           ))}
         </FormGroup>
-      </Paper>
+      </Box>
     </div>
   );
 };
-
-export default Sidebar;

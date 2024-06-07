@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Product } from "./Product";
 import { useFetchProducts } from "../hooks/useFetchProducts";
 import { useFetchCategories } from "../hooks/useFetchCategories";
-import Sidebar from "./Sidebar";
+import { CategorySidebar } from "./CategorySidebar";
 import { ProductContext } from "../context/ProductContext";
 
 export const ProductList = () => {
@@ -34,7 +34,7 @@ export const ProductList = () => {
   return (
     <div className="card-categories">
       <div className="categories-list-container">
-        <Sidebar
+        <CategorySidebar
           categories={categories}
           onSelectCategory={handleSelectCategory}
         />
