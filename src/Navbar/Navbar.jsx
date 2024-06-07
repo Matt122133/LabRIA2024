@@ -19,6 +19,9 @@ import { ProductContext } from "../Products/context/ProductContext";
 export const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { searchTerm, setSearchTerm } = useContext(ProductContext);
+  const { firstName: name } = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : { name: "" };
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
@@ -39,7 +42,9 @@ export const Navbar = () => {
               }}
               to={"/"}
             >
-              <Typography variant="h6">Logo</Typography>
+              <div className="img-container">
+                <img src="/logo-Ecommerce.png" alt="Logo-Ecommerce" />
+              </div>
             </Link>
           </Grid>
           <Grid item xs={6}>
@@ -65,22 +70,27 @@ export const Navbar = () => {
           </Grid>
           <Grid item xs={2}>
             <Link to="/cart">
-              <IconButton color="inherit">
-                <ShoppingCartIcon />
-              </IconButton>
+              <div className="cart-icon">
+                <IconButton color="inherit">
+                  <ShoppingCartIcon />
+                </IconButton>
+              </div>
             </Link>
           </Grid>
           <Grid item xs={2}>
-            <IconButton color="inherit" onClick={handleDrawerOpen}>
-              <AccountCircleIcon />
-            </IconButton>
-            <Drawer
-              anchor="right"
-              open={drawerOpen}
-              onClose={handleDrawerClose}
-            >
-              <NavListDrawer onClose={handleDrawerClose} />
-            </Drawer>
+            <div className="user-icon">
+              <IconButton color="inherit" onClick={handleDrawerOpen}>
+                {name}
+                <AccountCircleIcon />
+              </IconButton>
+              <Drawer
+                anchor="right"
+                open={drawerOpen}
+                onClose={handleDrawerClose}
+              >
+                <NavListDrawer onClose={handleDrawerClose} />
+              </Drawer>
+            </div>
           </Grid>
         </Grid>
       </Toolbar>

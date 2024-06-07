@@ -6,12 +6,13 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Link } from "react-router-dom";
 
 export const NavListDrawer = ({ onClose }) => {
+  const router = useNavigate();
   return (
     <Box sx={{ width: 250 }}>
       <nav>
@@ -25,7 +26,12 @@ export const NavListDrawer = ({ onClose }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                router("/login");
+                onClose();
+              }}
+            >
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
@@ -33,7 +39,12 @@ export const NavListDrawer = ({ onClose }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                router("/modifyAccount");
+                onClose();
+              }}
+            >
               <ListItemIcon>
                 <AccountCircleIcon />
               </ListItemIcon>
