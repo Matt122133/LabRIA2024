@@ -39,6 +39,25 @@ img {
   justify-content: center;
 }
 
+.categories-list-container {
+  display: flex;
+  width: 100%;
+}
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.sidebar-paper {
+  padding: 20px;
+}
+
+
 .card {
   align-content: center;
   align-items: center;
