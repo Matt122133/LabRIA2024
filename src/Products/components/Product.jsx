@@ -8,7 +8,7 @@ export const Product = ({ id, title, price, images, rating }) => {
       <section className="card-content">
         <h3>{title}</h3>
         <div className="card-product-price">
-          <p>{price} $</p>
+          <p>$ {price}</p>
           <p>
             <StarRate
               sx={{
