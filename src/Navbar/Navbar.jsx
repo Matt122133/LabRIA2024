@@ -4,7 +4,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
   Grid,
   TextField,
   InputAdornment,
@@ -13,7 +12,7 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavListDrawer } from "./NavListDrawer";
+import { NavListDrawer } from "./";
 import { ProductContext } from "../Products/context/ProductContext";
 
 export const Navbar = () => {

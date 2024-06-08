@@ -14,31 +14,39 @@ export const ProductDetailPage = () => {
     title,
     sku,
     category,
+    stock,
     brand,
     description,
     price,
     images,
-    raiting,
+    rating,
     discountPercentage,
+    shippingInformation,
     warrantyInformation,
   } = product;
 
   return (
-    <main>
+    <>
       <IconButton onClick={() => navigate(-1)}>
         <ArrowBack />
       </IconButton>
-      <h1>{title}</h1>
-      <p>sku: {sku}</p>
-      <p>brand: {brand}</p>
-      <p>category: {category}</p>
-      <img src={images} alt={title} />
-      <h2>{price}</h2>
-      <h2>%{discountPercentage}</h2>
-      <p>{description}</p>
-      <p>{raiting}</p>
-      <p>{warrantyInformation}</p>
-      <Button onClick={() => addToCart(product)}>Agregar al carrito</Button>
-    </main>
+      <main className="pdp-container">
+        <h1>{title}</h1>
+        <img src={images} alt={title} />
+        <div className="pdp-content">
+          <p>sku: {sku}</p>
+          <p>Stock: {stock}</p>
+          <p>Brand: {brand}</p>
+          <p>Category: {category}</p>
+          <p>${price}</p>
+          <p>%{discountPercentage}</p>
+          <p>{description}</p>
+          <p>{rating}</p>
+          <p>{shippingInformation}</p>
+          <p>{warrantyInformation}</p>
+        </div>
+        <Button onClick={() => addToCart(product)}>Agregar al carrito</Button>
+      </main>
+    </>
   );
 };

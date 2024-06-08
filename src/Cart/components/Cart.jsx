@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
 import { CartContext } from "../context/CartContext";
 
 export const Cart = () => {
@@ -21,8 +22,11 @@ export const Cart = () => {
 
   return (
     <div>
+      <IconButton onClick={() => navigate(-1)}>
+        <ArrowBack />
+      </IconButton>
       {cart.map((product) => (
-        <div key={product.id}>
+        <div className="cart-product" key={product.id}>
           <h2>{product.name}</h2>
           <p>{product.description}</p> <p>{product.price}</p>
           <img src={product.image} alt={product.name} />

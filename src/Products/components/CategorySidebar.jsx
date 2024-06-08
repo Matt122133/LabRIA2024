@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Checkbox,
@@ -5,7 +6,6 @@ import {
   FormGroup,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
 
 export const CategorySidebar = ({ categories, onSelectCategory }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
