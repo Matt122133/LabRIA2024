@@ -4,15 +4,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useAuth } from "../Auth/components/context/AuthContext"; // Importa el contexto de autenticación
+import { useAuth } from "../Auth/context/AuthContext";
+
 
 export const NavListDrawer = ({ onClose }) => {
-  const { isAuthenticated, logout } = useAuth(); // Obtiene el estado y la función de logout del contexto
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout(); // Llama a la función de logout
-    navigate('/login');
+    navigate("/login");
     onClose();
   };
 
@@ -23,7 +24,12 @@ export const NavListDrawer = ({ onClose }) => {
           {isAuthenticated ? (
             <>
               <ListItem disablePadding>
-                <ListItemButton onClick={handleLogout}>
+                <ListItemButton
+                  onClick={() => {
+                    localStorage.clear();
+                    handleLogout();
+                  }}
+                >
                   <ListItemIcon>
                     <LogoutIcon />
                   </ListItemIcon>
@@ -33,7 +39,7 @@ export const NavListDrawer = ({ onClose }) => {
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    navigate('/modifyAccount');
+                    navigate("/modifyAccount");
                     onClose();
                   }}
                 >

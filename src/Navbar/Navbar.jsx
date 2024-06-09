@@ -4,7 +4,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
   Grid,
   TextField,
   InputAdornment,
@@ -13,14 +12,14 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavListDrawer } from "./NavListDrawer";
+import { NavListDrawer } from "./";
 import { ProductContext } from "../Products/context/ProductContext";
-import { useAuth } from '../Auth/components/context/AuthContext'; // Importa el contexto de autenticación
+import { useAuth } from "../Auth/context/AuthContext";
 
 export const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { searchTerm, setSearchTerm } = useContext(ProductContext);
-  const { isAuthenticated, user, logout } = useAuth(); // Obtiene el estado y funciones del contexto
+  const { isAuthenticated, user } = useAuth();
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);

@@ -1,5 +1,5 @@
-import { Star, StarBorder, StarRate } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { StarRate } from "@mui/icons-material";
 
 export const Product = ({ id, title, price, images, rating }) => {
   return (

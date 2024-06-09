@@ -1,9 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./Auth/context/AuthContext";
 import { CartProvider } from "./Cart/context/CartContext";
-import { Navbar } from "./Navbar/Navbar";
-import { AppRouter } from "./Router/AppRouter";
 import { ProductProvider } from "./Products/context/ProductContext";
-import {AuthProvider} from "./Auth/components/context/AuthContext";
+import { Navbar } from "./Navbar";
+import { AppRouter } from "./Router/AppRouter";
 
 export const EcommerceApp = () => {
   return (
