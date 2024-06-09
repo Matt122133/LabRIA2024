@@ -12,7 +12,7 @@ export const NavListDrawer = ({ onClose }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(); // Llama a la función de logout
+    logout();
     navigate("/login");
     onClose();
   };
@@ -26,7 +26,6 @@ export const NavListDrawer = ({ onClose }) => {
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    localStorage.clear();
                     handleLogout();
                   }}
                 >

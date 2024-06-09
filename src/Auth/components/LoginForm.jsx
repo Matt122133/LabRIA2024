@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // Importa el contexto de autenticación
 import {
   Button,
   TextField,
@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useState } from "react";
+import { useAuth } from "../context/AuthContext"; // Importa el contexto de autenticación
 
 export const LoginForm = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -19,6 +19,15 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.clear();
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
