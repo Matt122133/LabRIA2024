@@ -1,8 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext"; 
 
 export const Register = () => {
   const router = useNavigate();
+  const { login } = useAuth(); 
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -21,8 +23,14 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("user", JSON.stringify(user));
-    router("/");
+    const userData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
+    };
+    login(userData); 
+    router("/"); 
   };
 
   return (

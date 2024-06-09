@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -15,13 +15,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavListDrawer } from "./NavListDrawer";
 import { ProductContext } from "../Products/context/ProductContext";
+import { useAuth } from '../Auth/components/context/AuthContext'; // Importa el contexto de autenticación
 
 export const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { searchTerm, setSearchTerm } = useContext(ProductContext);
-  const { firstName: name } = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
-    : { name: "" };
+  const { isAuthenticated, user, logout } = useAuth(); // Obtiene el estado y funciones del contexto
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
@@ -80,7 +79,7 @@ export const Navbar = () => {
           <Grid item xs={2}>
             <div className="user-icon">
               <IconButton color="inherit" onClick={handleDrawerOpen}>
-                {name}
+                {isAuthenticated && user ? user.firstName : "Login"}
                 <AccountCircleIcon />
               </IconButton>
               <Drawer
