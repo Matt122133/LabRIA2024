@@ -1,25 +1,44 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+import { useAuth } from "../context/AuthContext"; // Importa el contexto de autenticación
+import {
+  Button,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Box,
+  Grid,
+  Typography,
+} from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useState } from "react";
 
 export const LoginForm = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const userLocalStorage = JSON.parse(localStorage.getItem("user"));
+    if (userLocalStorage) {
+      const { email, password } = userLocalStorage;
+      if (data.get("email") === email && data.get("password") === password) {
+        login();
+        navigate("/");
+      } else {
+        setPopupMessage("Email o contraseña incorrectos.");
+        setShowPopup(true);
+      }
+    }
+    setPopupMessage("No hay usuarios registrados.");
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -85,6 +104,14 @@ export const LoginForm = () => {
             </Link>
           </Grid>
         </Grid>
+        {showPopup && (
+          <div className="popup">
+            <div className="popup-content">
+              <p>{popupMessage}</p>
+              <button onClick={closePopup}>Cerrar</button>
+            </div>
+          </div>
+        )}
       </Box>
     </Box>
   );
