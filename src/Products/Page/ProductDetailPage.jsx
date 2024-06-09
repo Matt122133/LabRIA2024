@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
@@ -8,9 +8,15 @@ import { useAuth } from "../../Auth/context/AuthContext";
 
 export const ProductDetailPage = () => {
   const { isAuthenticated } = useAuth();
-  const [showPopup, setShowPopup] = useState(false);
+  const {
+    addToCart,
+    showPopup,
+    popupMessage,
+    closePopup,
+    setPopupMessage,
+    setShowPopup,
+  } = useContext(CartContext);
   const navigate = useNavigate();
-  const { addToCart } = useContext(CartContext);
   const { id } = useParams();
   const { product } = useFetchProductById(id);
   const {
@@ -27,10 +33,6 @@ export const ProductDetailPage = () => {
     shippingInformation,
     warrantyInformation,
   } = product;
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
 
   return (
     <>
@@ -57,6 +59,9 @@ export const ProductDetailPage = () => {
             if (isAuthenticated) {
               addToCart(product);
             } else {
+              setPopupMessage(
+                "Debe estar Logueado para agregar productos al carrito."
+              );
               setShowPopup(true);
             }
           }}
@@ -66,7 +71,7 @@ export const ProductDetailPage = () => {
         {showPopup && (
           <div className="popup">
             <div className="popup-content">
-              <p>Debe estar Logueado para agregar productos al carrito.</p>
+              <p>{popupMessage}</p>
               <button onClick={closePopup}>Cerrar</button>
             </div>
           </div>

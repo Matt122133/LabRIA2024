@@ -1,11 +1,19 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
-import { ArrowBack } from "@mui/icons-material";
+import { ArrowBack, Delete } from "@mui/icons-material";
 import { CartContext } from "../context/CartContext";
 
 export const Cart = () => {
-  const { cart, removeFromCart } = useContext(CartContext);
+  const {
+    cart,
+    addToCart,
+    subtractFromCart,
+    removeFromCart,
+    showPopup,
+    popupMessage,
+    closePopup,
+  } = useContext(CartContext);
   const navigate = useNavigate();
 
   if (cart.length === 0) {
@@ -16,6 +24,7 @@ export const Cart = () => {
       </div>
     );
   }
+
   const total = cart
     .reduce((sum, product) => sum + product.price * product.quantity, 0)
     .toFixed(2);
@@ -28,13 +37,29 @@ export const Cart = () => {
       {cart.map((product) => (
         <div className="cart-product" key={product.id}>
           <h2>{product.name}</h2>
-          <p>{product.description}</p> <p>{product.price}</p>
+          <p>{product.description}</p>
+          <p>{product.price}</p>
           <img src={product.image} alt={product.name} />
-          <p>{product.quantity}</p>
-          <button onClick={() => removeFromCart(product.id)}>Eliminar</button>
+          <div className="cart-quantity">
+            <button onClick={() => subtractFromCart(product.id)}>-</button>
+            <p>{product.quantity}</p>
+            <button onClick={() => addToCart(product)}>+</button>
+          </div>
+          <button onClick={() => removeFromCart(product.id)}>
+            <Delete />
+          </button>
         </div>
       ))}
       <p>Total: ${total}</p>
+
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <p>{popupMessage}</p>
+            <button onClick={closePopup}>Cerrar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
