@@ -33,28 +33,38 @@ export const ProductDetailPage = () => {
     shippingInformation,
     warrantyInformation,
   } = product;
-  const [imageSelected, setimageSelected] = useState("")
+  const [imageSelected, setimageSelected] = useState("");
   useEffect(() => {
-    setimageSelected(images?.[0])
-  }, [product])
+    setimageSelected(images?.[0]);
+  }, [product]);
 
   const changeImage = (index) => {
-    setimageSelected(images?.[index])
-  }
-  console.log({discountPercentage, price, total: price - (price*discountPercentage)})
+    setimageSelected(images?.[index]);
+  };
   return (
     <>
-      <IconButton onClick={() => navigate(-1)}>
+      <IconButton
+        onClick={() => navigate(-1)}
+        sx={{
+          color: "#1976d2",
+        }}
+      >
         <ArrowBack />
       </IconButton>
       <main className="pdp-container">
         <h1>{title}</h1>
         <div className="pdp-images">
           <img src={imageSelected} alt={title} />
-          {images?.map((image, index) => <img src={image} key={index} alt={title} onClick={() => {
-            changeImage(index)
-          }} />)}
-
+          {images?.map((image, index) => (
+            <img
+              src={image}
+              key={index}
+              alt={title}
+              onClick={() => {
+                changeImage(index);
+              }}
+            />
+          ))}
         </div>
         <div className="pdp-content">
           <p>sku: {sku}</p>
@@ -62,24 +72,35 @@ export const ProductDetailPage = () => {
           <p>Brand: {brand}</p>
           <p>Category: {category}</p>
           <div className="pdp-content-price">
-            <p className={`${discountPercentage ? "old-price" : "final-price"}`}>$ {price}</p>
-            {
-              discountPercentage && (<div className="pdp-content-discount-container">
-                <p className="final-price">$ {Number((price - (price * discountPercentage/100)).toFixed(2))}</p>
+            <p
+              className={`${discountPercentage ? "old-price" : "final-price"}`}
+            >
+              $ {price}
+            </p>
+            {discountPercentage && (
+              <div className="pdp-content-discount-container">
+                <p className="final-price">
+                  ${" "}
+                  {Number(
+                    (price - (price * discountPercentage) / 100).toFixed(2)
+                  )}
+                </p>
                 <p>{discountPercentage}% OFF</p>
               </div>
-              )
-            }
+            )}
           </div>
           <p>Descripción: {description}</p>
-          <p><StarRate
-            sx={{
-              position: "relative",
-              top: "5px",
-              left: "-3px",
-              color: "gold",
-            }}
-          /> {rating}</p>
+          <p>
+            <StarRate
+              sx={{
+                position: "relative",
+                top: "5px",
+                left: "-3px",
+                color: "gold",
+              }}
+            />{" "}
+            {rating}
+          </p>
           <div className="pdp-content-info">
             <p>{shippingInformation}</p>
             <p>{warrantyInformation}</p>
@@ -90,10 +111,8 @@ export const ProductDetailPage = () => {
             onClick={() => {
               if (isAuthenticated) {
                 const addSuccess = addToCart(product);
-                if(addSuccess){
-                  setPopupMessage(
-                    "Producto agregado con exito"
-                  );
+                if (addSuccess) {
+                  setPopupMessage("Producto agregado con exito");
                   setShowPopup(true);
                 }
               } else {
@@ -107,11 +126,11 @@ export const ProductDetailPage = () => {
               backgroundColor: "#007bff",
               color: "white",
               "&:active": {
-                background: "#007bff"
+                background: "#007bff",
               },
               "&:hover": {
-                background: "#007bff"
-              }
+                background: "#007bff",
+              },
             }}
           >
             Agregar al carrito
@@ -128,11 +147,11 @@ export const ProductDetailPage = () => {
                   color: "white",
                   width: "100%",
                   "&:active": {
-                    background: "#007bff"
+                    background: "#007bff",
                   },
                   "&:hover": {
-                    background: "#007bff"
-                  }
+                    background: "#007bff",
+                  },
                 }}
               >
                 Cerrar

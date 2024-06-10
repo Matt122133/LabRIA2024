@@ -11,7 +11,11 @@ import {
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
-export const CategorySidebar = ({ categories, onSelectCategory, closeCategories }) => {
+export const CategorySidebar = ({
+  categories,
+  onSelectCategory,
+  closeCategories,
+}) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   const handleCategoryChange = (category) => {
@@ -26,20 +30,23 @@ export const CategorySidebar = ({ categories, onSelectCategory, closeCategories 
     <div className="sidebar">
       <Box elevation={3} className="sidebar-paper">
         <Grid container justifyContent="space-between" alignItems="center">
-        <Typography variant="h6" gutterBottom marginBottom={0}>
-          Categorías
-        </Typography>
-        <IconButton onClick={closeCategories}>
-          <Close sx={{
-            color: "#1976d2"
-          }}/>
-        </IconButton>
-
+          <Typography variant="h6" gutterBottom marginBottom={0}>
+            Categorías
+          </Typography>
+          <IconButton onClick={closeCategories}>
+            <Close
+              sx={{
+                color: "#1976d2",
+              }}
+            />
+          </IconButton>
         </Grid>
-        <Divider sx={{
-          borderBottomWidth: "2px",
-          backgroundColor: "#1976d2"
-        }}/>
+        <Divider
+          sx={{
+            borderBottomWidth: "2px",
+            backgroundColor: "#1976d2",
+          }}
+        />
         <FormGroup>
           {categories.map((category) => (
             <FormControlLabel

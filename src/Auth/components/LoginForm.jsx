@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useAuth } from "../context/AuthContext"; // Importa el contexto de autenticación
+import { useAuth } from "../context/AuthContext";
 
 export const LoginForm = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -117,7 +117,22 @@ export const LoginForm = () => {
           <div className="popup">
             <div className="popup-content">
               <p>{popupMessage}</p>
-              <button onClick={closePopup}>Cerrar</button>
+              <Button
+                onClick={closePopup}
+                sx={{
+                  backgroundColor: "#007bff",
+                  color: "white",
+                  width: "100%",
+                  "&:active": {
+                    background: "#007bff",
+                  },
+                  "&:hover": {
+                    background: "#007bff",
+                  },
+                }}
+              >
+                Cerrar
+              </Button>
             </div>
           </div>
         )}

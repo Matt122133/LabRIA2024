@@ -1,14 +1,22 @@
-import React from 'react';
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import React, { useContext } from "react";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../Auth/context/AuthContext";
-
+import { CartContext } from "../Cart/context/CartContext";
 
 export const NavListDrawer = ({ onClose }) => {
   const { isAuthenticated, logout } = useAuth();
+  const { clearCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -26,6 +34,7 @@ export const NavListDrawer = ({ onClose }) => {
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => {
+                    clearCart();
                     handleLogout();
                   }}
                 >

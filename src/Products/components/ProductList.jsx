@@ -1,4 +1,3 @@
-// ProductList.jsx
 import { useContext, useState } from "react";
 import {
   usePagination,
@@ -23,31 +22,34 @@ export const ProductList = () => {
     selectedCategories
   );
   const { currentPage, handleNextPage, handlePreviousPage, paginatedItems } =
-    usePagination(1, 8);
+    usePagination(1, 20);
 
   const currentProducts = paginatedItems(filteredProducts);
   const openSidebar = (e) => {
-
-    setOpenCategories((prev => !prev))
-    
-  }
+    setOpenCategories((prev) => !prev);
+  };
   const closeBackgroundSidebar = (e) => {
-    if(e?.target?.className == "sidebar"){
-      setOpenCategories((prev => !prev))
+    if (e?.target?.className == "sidebar") {
+      setOpenCategories((prev) => !prev);
     }
-  }
+  };
   return (
     <div className="card-categories">
       <Button
-          type="button"
-          variant="contained"
-          sx={{ mt: 3, mb: 2, width: "230px", margin: "auto"}}
-          onClick={openSidebar}
-          className="categories-button-responsive"
-        >
-          Categorias
-        </Button>
-      <div onClick={closeBackgroundSidebar} className={`categories-list-container ${openCategories ? "open-categories": ""}`}>
+        type="button"
+        variant="contained"
+        sx={{ mt: 3, mb: 2, width: "230px", margin: "auto" }}
+        onClick={openSidebar}
+        className="categories-button-responsive"
+      >
+        Categorias
+      </Button>
+      <div
+        onClick={closeBackgroundSidebar}
+        className={`categories-list-container ${
+          openCategories ? "open-categories" : ""
+        }`}
+      >
         <CategorySidebar
           categories={categories}
           onSelectCategory={setSelectedCategories}
