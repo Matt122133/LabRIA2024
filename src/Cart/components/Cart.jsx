@@ -18,48 +18,128 @@ export const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <div>
+      <div className="cart-message">
         <p>No tienes productos en el carrito.</p>
-        <Button onClick={() => navigate("/")}>Ir a buscar productos</Button>
+        <Button
+          onClick={() => navigate("/")}
+          sx={{
+            maxWidth: "430px",
+            backgroundColor: "#007bff",
+            color: "white",
+            width: "100%",
+            "&:active": {
+              background: "#007bff",
+            },
+            "&:hover": {
+              background: "#007bff",
+            },
+          }}
+        >
+          Ir a buscar productos
+        </Button>
       </div>
     );
   }
 
   const total = cart
-    .reduce((sum, product) => sum + product.price * product.quantity, 0)
+    .reduce(
+      (sum, product) =>
+        sum +
+        Number(
+          (
+            product.price -
+            (product.price * product.discountPercentage) / 100
+          ).toFixed(2)
+        ) *
+          product.quantity,
+      0
+    )
     .toFixed(2);
 
   return (
-    <div>
-      <IconButton onClick={() => navigate(-1)}>
+    <>
+      <IconButton
+        onClick={() => navigate(-1)}
+        sx={{
+          color: "#1976d2",
+        }}
+      >
         <ArrowBack />
       </IconButton>
-      {cart.map((product) => (
-        <div className="cart-product" key={product.id}>
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <p>{product.price}</p>
-          <img src={product.image} alt={product.name} />
-          <div className="cart-quantity">
-            <button onClick={() => subtractFromCart(product.id)}>-</button>
-            <p>{product.quantity}</p>
-            <button onClick={() => addToCart(product)}>+</button>
-          </div>
-          <button onClick={() => removeFromCart(product.id)}>
-            <Delete />
-          </button>
-        </div>
-      ))}
-      <p>Total: ${total}</p>
+      <div className="cart">
+        {cart.map((product) => {
+          return (
+            <div className="cart-product" key={product.id}>
+              <img src={product?.images?.[0]} alt={product.name} />
+              <div>
+                <h2>{product.title}</h2>
+                <p>{product.description}</p>
+                <div className="cart-quantity">
+                  <button onClick={() => subtractFromCart(product.id)}>
+                    -
+                  </button>
+                  <p>{product.quantity}</p>
+                  <button onClick={() => addToCart(product)}>+</button>
+                  <button onClick={() => removeFromCart(product.id)}>
+                    <Delete />
+                  </button>
+                </div>
+              </div>
+              <div className="cart-price-item">
+                <p>$ {product.price}</p>
+                {product.discountPercentage && (
+                  <>
+                    <p className="final-price">
+                      ${" "}
+                      {Number(
+                        (
+                          product.price -
+                          (product.price * product.discountPercentage) / 100
+                        ).toFixed(2)
+                      )}
+                    </p>
+                    <p>{product.discountPercentage}% OFF</p>
+                  </>
+                )}
+                <p>
+                  Total: $
+                  {(
+                    Number(
+                      product.price -
+                        (product.price * product.discountPercentage) / 100
+                    ) * product.quantity
+                  ).toFixed(2)}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+        <p>Total: ${total}</p>
+      </div>
 
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
             <p>{popupMessage}</p>
-            <button onClick={closePopup}>Cerrar</button>
+            <Button
+              onClick={closePopup}
+              sx={{
+                backgroundColor: "#007bff",
+                color: "white",
+                width: "100%",
+                "&:active": {
+                  background: "#007bff",
+                },
+                "&:hover": {
+                  background: "#007bff",
+                },
+              }}
+            >
+              Cerrar
+            </Button>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };

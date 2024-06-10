@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 
 export const Register = () => {
@@ -10,7 +11,6 @@ export const Register = () => {
     lastName: "",
     birthday: "",
     email: "",
-    username: "",
     password: "",
   });
 
@@ -27,7 +27,6 @@ export const Register = () => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      username: user.username,
       password: user.password,
     };
     localStorage.setItem("user", JSON.stringify(userData));
@@ -36,7 +35,7 @@ export const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form-register" onSubmit={handleSubmit}>
       <h1>Register</h1>
       <input
         type="text"
@@ -70,14 +69,6 @@ export const Register = () => {
         required
       />
       <input
-        type="text"
-        name="username"
-        value={user.username}
-        onChange={handleChange}
-        placeholder="Username"
-        required
-      />
-      <input
         type="password"
         name="password"
         value={user.password}
@@ -85,7 +76,22 @@ export const Register = () => {
         placeholder="Password"
         required
       />
-      <button type="submit">Register</button>
+      <Button
+        type="submit"
+        sx={{
+          backgroundColor: "#007bff",
+          color: "white",
+          width: "100%",
+          "&:active": {
+            background: "#007bff",
+          },
+          "&:hover": {
+            background: "#007bff",
+          },
+        }}
+      >
+        Register
+      </Button>
     </form>
   );
 };

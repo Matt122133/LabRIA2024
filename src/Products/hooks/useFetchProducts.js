@@ -9,12 +9,12 @@ export const useFetchProducts = () => {
     setProducts(productsFromApi);
   }
 
-  useEffect( () => {
+  useEffect(() => {
     getProducts();
   }, []);
 
   return {
     productsApi,
-    };
+  };
 
 }

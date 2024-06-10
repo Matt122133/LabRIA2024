@@ -9,7 +9,7 @@ export const useFetchProductsByCategory = (category) => {
         setCategories(products);
     }
 
-    useEffect( () => {
+    useEffect(() => {
         getProductsCategory();
     }, []);
 

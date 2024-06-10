@@ -12,6 +12,7 @@ export const CartProvider = ({ children }) => {
     if (existingProduct && existingProduct.quantity >= product.stock) {
       setPopupMessage("No hay suficiente stock disponible");
       setShowPopup(true);
+      return false;
     } else {
       setCart((prevCart) => {
         const updatedCart = [...prevCart];
@@ -23,6 +24,7 @@ export const CartProvider = ({ children }) => {
         }
         return updatedCart;
       });
+      return true;
     }
   };
 
@@ -43,6 +45,9 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => prevCart.filter((p) => p.id !== productId));
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
   const closePopup = () => {
     setShowPopup(false);
     setPopupMessage("");
@@ -55,6 +60,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         subtractFromCart,
         removeFromCart,
+        clearCart,
         showPopup,
         popupMessage,
         closePopup,
