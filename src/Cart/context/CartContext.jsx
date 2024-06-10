@@ -12,6 +12,7 @@ export const CartProvider = ({ children }) => {
     if (existingProduct && existingProduct.quantity >= product.stock) {
       setPopupMessage("No hay suficiente stock disponible");
       setShowPopup(true);
+      return false
     } else {
       setCart((prevCart) => {
         const updatedCart = [...prevCart];
@@ -23,6 +24,7 @@ export const CartProvider = ({ children }) => {
         }
         return updatedCart;
       });
+      return true
     }
   };
 

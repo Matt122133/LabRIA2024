@@ -26,40 +26,57 @@ export const Cart = () => {
   }
 
   const total = cart
-    .reduce((sum, product) => sum + product.price * product.quantity, 0)
+    .reduce((sum, product) => sum + Number((product.price - (product.price * product.discountPercentage / 100)).toFixed(2))* product.quantity, 0)
     .toFixed(2);
 
-  return (
-    <div>
-      <IconButton onClick={() => navigate(-1)}>
-        <ArrowBack />
-      </IconButton>
-      {cart.map((product) => (
-        <div className="cart-product" key={product.id}>
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <p>{product.price}</p>
-          <img src={product.image} alt={product.name} />
-          <div className="cart-quantity">
-            <button onClick={() => subtractFromCart(product.id)}>-</button>
-            <p>{product.quantity}</p>
-            <button onClick={() => addToCart(product)}>+</button>
+  return (<>
+    <IconButton onClick={() => navigate(-1)}>
+      <ArrowBack />
+    </IconButton>
+    <div className="cart">
+      {cart.map((product) => {
+        console.log(product)
+        return (
+          <div className="cart-product" key={product.id}>
+            <img src={product?.images?.[0]} alt={product.name} />
+            <div>
+              <h2>{product.title}</h2>
+              <p>{product.description}</p>
+              <div className="cart-quantity">
+                <button onClick={() => subtractFromCart(product.id)}>-</button>
+                <p>{product.quantity}</p>
+                <button onClick={() => addToCart(product)}>+</button>
+                <button onClick={() => removeFromCart(product.id)}>
+                  <Delete />
+                </button>
+              </div>
+            </div>
+            <div className="cart-price-item">
+              <p>$ {product.price}</p>
+              {
+                product.discountPercentage && (<>
+                  <p className="final-price">$ {Number((product.price - (product.price * product.discountPercentage / 100)).toFixed(2))}</p>
+                  <p>{product.discountPercentage}% OFF</p>
+                </>
+                )
+              }
+            <p>Total: ${(Number((product.price - (product.price * product.discountPercentage / 100))) * product.quantity).toFixed(2)}</p>
+            </div>
           </div>
-          <button onClick={() => removeFromCart(product.id)}>
-            <Delete />
-          </button>
-        </div>
-      ))}
-      <p>Total: ${total}</p>
 
-      {showPopup && (
-        <div className="popup">
-          <div className="popup-content">
-            <p>{popupMessage}</p>
-            <button onClick={closePopup}>Cerrar</button>
-          </div>
-        </div>
-      )}
+        )
+      })}
+      <p>Total: ${total}</p>
     </div>
+
+    {showPopup && (
+      <div className="popup">
+        <div className="popup-content">
+          <p>{popupMessage}</p>
+          <button onClick={closePopup}>Cerrar</button>
+        </div>
+      </div>
+    )}
+  </>
   );
 };
