@@ -121,7 +121,22 @@ export const Cart = () => {
         <div className="popup">
           <div className="popup-content">
             <p>{popupMessage}</p>
-            <button onClick={closePopup}>Cerrar</button>
+            <Button
+              onClick={closePopup}
+              sx={{
+                backgroundColor: "#007bff",
+                color: "white",
+                width: "100%",
+                "&:active": {
+                  background: "#007bff",
+                },
+                "&:hover": {
+                  background: "#007bff",
+                },
+              }}
+            >
+              Cerrar
+            </Button>
           </div>
         </div>
       )}
