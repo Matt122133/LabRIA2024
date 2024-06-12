@@ -63,7 +63,7 @@ export const ProductList = () => {
           currentPage={currentPage}
           handlePreviousPage={handlePreviousPage}
           handleNextPage={handleNextPage}
-          isLastPage={currentProducts.length < 8}
+          isLastPage={currentProducts.length < 20}
         />
       </main>
     </div>

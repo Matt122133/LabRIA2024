@@ -35,7 +35,7 @@ export const LoginForm = () => {
     if (userLocalStorage) {
       const { email, password } = userLocalStorage;
       if (data.get("email") === email && data.get("password") === password) {
-        login();
+        login(userLocalStorage);
         navigate("/");
       } else {
         setPopupMessage("Email o contraseña incorrectos.");
