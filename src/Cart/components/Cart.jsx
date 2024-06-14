@@ -20,23 +20,25 @@ export const Cart = () => {
     return (
       <div className="cart-message">
         <p>No tienes productos en el carrito.</p>
-        <Button
-          onClick={() => navigate("/")}
-          sx={{
+        <div className="cart-message-button">
+          <Button
+            onClick={() => navigate("/")}
+            sx={{
             maxWidth: "430px",
-            backgroundColor: "#007bff",
-            color: "white",
-            width: "100%",
-            "&:active": {
-              background: "#007bff",
-            },
-            "&:hover": {
-              background: "#007bff",
-            },
-          }}
-        >
-          Ir a buscar productos
-        </Button>
+              backgroundColor: "#007bff",
+              color: "white",
+              width: "100%",
+              "&:active": {
+                background: "#007bff",
+              },
+              "&:hover": {
+                background: "#007bff",
+              },
+            }}
+          >
+            Ir a buscar productos
+          </Button>
+        </div>
       </div>
     );
   }

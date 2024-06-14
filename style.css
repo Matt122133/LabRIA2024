@@ -375,6 +375,13 @@ img {
   justify-items: center;
 }
 
+.cart-message-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
 .form-register h1 {
   text-align: center;
   margin-bottom: 20px;
